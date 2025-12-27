@@ -612,52 +612,77 @@
         }
 
         .modal-content {
-            width: 90%;
-            max-width: 600px;
-            padding: 4rem;
-            background: rgba(255, 255, 255, 0.03);
+            width: 95%;
+            max-width: 850px;
+            padding: 3.5rem;
+            background: rgba(2, 26, 54, 0.98);
+            backdrop-filter: blur(20px);
             border-radius: 20px;
-            border: 1px solid rgba(219, 220, 214, 0.1);
+            border: 1px solid rgba(219, 220, 214, 0.2);
             position: relative;
         }
 
         .close-modal {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
             border: none;
             color: var(--white);
             cursor: pointer;
-            padding: 10px;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2100;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: var(--accent);
+            color: var(--primary);
         }
 
         .contact-form {
             display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
+        }
+
+        .contact-form h2 {
+            grid-column: span 2;
+            margin-bottom: 2rem !important;
+            font-size: 2.2rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.6rem;
         }
 
         .form-group label {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 500;
         }
 
         .form-group input,
         .form-group textarea {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px;
-            border-radius: 4px;
+            padding: 15px;
+            border-radius: 8px;
             color: var(--white);
             font-family: inherit;
+            font-size: 1rem;
             transition: var(--transition);
         }
 
@@ -712,7 +737,7 @@
             }
 
             .modal-content {
-                padding: 2rem;
+                padding: 1.5rem;
             }
         }
     </style>
@@ -1071,10 +1096,10 @@
             <button class="close-modal" onclick="closeModal()">
                 <i data-lucide="x"></i>
             </button>
-            <h2 style="margin-bottom: 2rem; text-align: center;">Contactez-nous</h2>
+            <h2 style="text-align: center;">Contactez-nous</h2>
             <form class="contact-form"
                 onsubmit="event.preventDefault(); alert('Message envoyé ! (Simulation)'); closeModal();">
-                <div class="form-group">
+                <div class="form-group full-width">
                     <label>Société / Cabinet</label>
                     <input type="text" placeholder="Le nom de votre structure" required>
                 </div>
@@ -1086,15 +1111,17 @@
                     <label>Email</label>
                     <input type="email" placeholder="votre@email.com" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group full-width">
                     <label>Téléphone</label>
                     <input type="tel" placeholder="06 00 00 00 00">
                 </div>
-                <div class="form-group">
+                <div class="form-group full-width">
                     <label>Message</label>
-                    <textarea rows="4" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+                    <textarea rows="3" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Envoyer le message</button>
+                <div class="form-group full-width">
+                    <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                </div>
             </form>
         </div>
     </div>
