@@ -479,13 +479,15 @@
             position: relative;
             max-width: 900px;
             margin: 0 auto;
-            overflow: visible;
-            padding-bottom: 60px;
+            padding-bottom: 110px;
+            /* Increased to fit buttons under dots */
         }
 
         .slider-track {
             display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            /* Base width for move calculation */
             cursor: grab;
             user-select: none;
             touch-action: pan-y pinch-zoom;
@@ -496,7 +498,8 @@
         }
 
         .slide {
-            min-width: 100%;
+            flex: 0 0 100%;
+            /* Each slide takes exactly 1 container width */
             padding: 0 10px;
             box-sizing: border-box;
         }
@@ -508,7 +511,8 @@
 
         .slider-btn {
             position: absolute;
-            bottom: -15px;
+            bottom: 20px;
+            /* Positioned near the bottom of padding */
             background: rgba(255, 255, 255, 0.1);
             border: none;
             color: var(--white);
@@ -529,11 +533,11 @@
         }
 
         .slider-btn.prev {
-            left: -60px;
+            left: calc(50% - 65px);
         }
 
         .slider-btn.next {
-            right: -60px;
+            right: calc(50% - 65px);
         }
 
         .slider-dots {
@@ -564,12 +568,10 @@
                 bottom: -40px;
             }
 
-            .slider-btn.prev {
-                left: calc(50% - 50px);
-            }
-
+            /* Keeping arrows centered below dots as defined globally */
+            .slider-btn.prev,
             .slider-btn.next {
-                right: calc(50% - 50px);
+                bottom: -15px;
             }
         }
 
@@ -792,7 +794,8 @@
             .nav-links {
                 position: fixed;
                 top: 0;
-                right: 0;
+                right: -300px;
+                /* Move totally off-screen by pixels */
                 width: 280px;
                 height: 100vh;
                 background: var(--primary);
@@ -800,17 +803,16 @@
                 justify-content: center;
                 padding: 4rem 2rem;
                 text-align: center;
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 z-index: 1001;
                 box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-                transform: translateX(101%);
                 display: flex;
                 visibility: hidden;
                 pointer-events: none;
             }
 
             .nav-links.active {
-                transform: translateX(0);
+                right: 0;
                 visibility: visible;
                 pointer-events: auto;
             }
@@ -858,7 +860,7 @@
             }
 
             .slider-btn {
-                bottom: 0;
+                bottom: -15px;
             }
 
             .slider-btn.prev {
