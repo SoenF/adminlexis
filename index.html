@@ -479,20 +479,28 @@
         }
 
         /* --- Slider Styles --- */
+        /* --- Slider Styles (New Architecture) --- */
         .slider-container {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            padding-bottom: 110px;
+            width: 100%;
+            max-width: 100%;
+            /* Strict limit */
             overflow: hidden;
-            /* Crucial for constraining content */
+            /* Crucial: hides off-screen slides */
+            position: relative;
+            padding-bottom: 80px;
+            /* Space for dots/arrows */
+            margin: 0 auto;
+        }
+
+        .slider-track-container {
+            width: 100%;
+            overflow: hidden;
         }
 
         .slider-track {
             display: flex;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
-            /* Must match parent width */
+            transition: transform 0.5s ease-out;
             cursor: grab;
             user-select: none;
             touch-action: pan-y pinch-zoom;
@@ -503,16 +511,16 @@
         }
 
         .slide {
+            /* STRICT: 100% of the visible container */
             flex: 0 0 100%;
             width: 100%;
             min-width: 0;
-            padding: 0 10px;
+            display: flex;
+            justify-content: center;
+            /* Center the card */
+            padding: 0 1rem;
+            /* Safe side padding */
             box-sizing: border-box;
-        }
-
-        .slider-track-container {
-            overflow: hidden;
-            width: 100%;
         }
 
         .slider-btn {
@@ -928,14 +936,16 @@
             }
 
             .review-card {
-                padding: 1.5rem;
+                /* On mobile, card takes full available width minus padding */
                 width: 100%;
-                /* box-sizing is inherited but being explicit helps */
+                max-width: 100%;
+                padding: 1.5rem;
                 box-sizing: border-box;
             }
 
             .review-text {
                 font-size: 0.95rem;
+                word-wrap: break-word;
             }
         }
 
