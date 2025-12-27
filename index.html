@@ -57,6 +57,8 @@
         h3 {
             font-family: 'Outfit', sans-serif;
             font-weight: 600;
+            max-width: 100%;
+            overflow-wrap: break-word;
         }
 
         .container {
@@ -71,6 +73,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            overflow: hidden;
+            /* Prevent absolute elements from leaking */
+            position: relative;
         }
 
         /* --- Header --- */
@@ -480,7 +485,14 @@
 
         .slider-track {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: grab;
+            user-select: none;
+            touch-action: pan-y pinch-zoom;
+        }
+
+        .slider-track:active {
+            cursor: grabbing;
         }
 
         .slide {
@@ -828,13 +840,21 @@
             }
 
             .about-image {
-                padding-right: 10px;
-                padding-bottom: 10px;
-                margin-top: 2rem;
+                padding-right: 0;
+                padding-bottom: 0;
+                margin-top: 3rem;
+                display: flex;
+                justify-content: center;
+            }
+
+            .about-image div[style*="position: absolute"] {
+                display: none;
+                /* Hide decorative corners on small mobile */
             }
 
             .slider-container {
-                padding-bottom: 80px;
+                padding-bottom: 100px;
+                overflow: hidden;
             }
 
             .slider-btn {
@@ -925,7 +945,7 @@
                     <button class="nav-close-btn" onclick="toggleMenu()" style="display: none;">
                         <i data-lucide="x"></i>
                     </button>
-                    <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                    <li><a href="#home" onclick="toggleMenu()">Accueil</a></li>
                     <li><a href="#pour-qui" onclick="toggleMenu()">Pour qui ?</a></li>
                     <li><a href="#services" onclick="toggleMenu()">Nos services</a></li>
                     <li><a href="#about" onclick="toggleMenu()">À propos</a></li>
@@ -1069,7 +1089,7 @@
                 <div class="services-grid">
                     <div class="service-card reveal">
                         <h3><i data-lucide="plus-circle"></i> Création d'entreprise</h3>
-                        <p>Immatriculations toutes formes, Guichet Unique, Dépôts greffe, Annonces légales, RBE...</p>
+                        <p>Immatriculations toutes formes, Guichet unique, Dépôts greffe, Annonces légales, RBE...</p>
                     </div>
                     <div class="service-card reveal" style="transition-delay: 0.1s;">
                         <h3><i data-lucide="refresh-cw"></i> Modifications courantes</h3>
@@ -1405,6 +1425,29 @@
                 closeModal();
             }
         }
+
+        // Swipe functionality
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        const handleSwipe = () => {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                moveSlider(1); // Swipe left
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                moveSlider(-1); // Swipe right
+            }
+        };
     </script>
 </body>
 
