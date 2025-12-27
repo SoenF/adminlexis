@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMINLEXIS | Formalités Juridiques et Administratives</title>
+    <meta name="description"
+        content="ADMINLEXIS accompagne les dirigeants de TPE/PME et professionnels du droit dans la gestion complète de leurs formalités juridiques.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #021A36;
+            --accent: #DBDCD6;
+            --white: #FFFFFF;
+            --green: #2D5A27;
+            --green-light: #3D7A35;
+            --text-gray: #A0AEC0;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 100px 0;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(2, 26, 54, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(219, 220, 214, 0.1);
+            transition: var(--transition);
+        }
+
+        nav {
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.1);
+        }
+
+        /* --- Section 1: Home --- */
+        #home {
+            background: linear-gradient(rgba(2, 26, 54, 0.7), rgba(2, 26, 54, 0.7)), url('hero.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            padding-top: 140px;
+        }
+
+        #home h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        #home .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        #home h2 {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        #home p {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--text-gray);
+        }
+
+        /* --- Section 2: Pour qui? --- */
+        #pour-qui {
+            background-color: #032145;
+        }
+
+        #pour-qui h1 {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 2.5rem;
+        }
+
+        .target-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .target-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .target-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .target-card h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(219, 220, 214, 0.2);
+            padding-bottom: 1rem;
+        }
+
+        .target-card ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .target-card ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .target-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .target-card .highlight-box {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .target-card h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* --- Section 3: Nos Services --- */
+        #services {
+            background-color: var(--primary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background-color: var(--green);
+            padding: 2.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: scale(1.02);
+            background-color: var(--green-light);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .services-cta {
+            text-align: center;
+        }
+
+        /* --- Section 4: À Propos --- */
+        #about {
+            background-color: #032145;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h1 {
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-gray);
+        }
+
+        .features-list {
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .feature-item i {
+            color: var(--accent);
+        }
+
+        .about-image {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 20px 20px 0 var(--accent);
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: translate(-10px, -10px);
+            box-shadow: 30px 30px 0 var(--accent);
+        }
+
+        /* --- Section 5: Retours --- */
+        #reviews {
+            background-color: var(--primary);
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .review-author {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .author-title {
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #011022;
+            padding: 60px 0 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+        }
+
+        /* --- Modal/Contact --- */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 26, 54, 0.98);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 600px;
+            padding: 4rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(219, 220, 214, 0.1);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 4px;
+            color: var(--white);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* --- Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 968px) {
+
+            .target-grid,
+            .services-grid,
+            .review-grid,
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .modal-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">ADMIN<span>LEXIS</span></a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#pour-qui">Pour qui?</a></li>
+                    <li><a href="#services">Nos Services</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#reviews">Vos retours</a></li>
+                    <li><a href="#" onclick="openModal(); return false;">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <i data-lucide="menu"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECTION 1 - HOME -->
+        <section id="home">
+            <div class="container reveal">
+                <h1>Vos formalités juridiques, prises en charge de A à Z.</h1>
+                <p class="subtitle">Vous vous concentrez sur l'essentiel.</p>
+                <h2>ADMINLEXIS accompagne les dirigeants de TPE/PME et les professionnels du droit et du chiffre dans la
+                    gestion complète de leurs formalités juridiques et administratives.</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <p>Guichet Unique, greffe, annonces légales, RBE, modifications statutaires, cessations d'activité…
+                        Des démarches indispensables, mais chronophages et complexes. ADMINLEXIS s'en charge pour vous,
+                        avec méthode, rigueur et fiabilité.</p>
+                </div>
+                <a href="#" class="btn btn-primary" onclick="openModal(); return false;">Prendre contact / Planifier un
+                    échange</a>
+            </div>
+        </section>
+
+        <!-- SECTION 2 - POUR QUI? -->
+        <section id="pour-qui">
+            <div class="container">
+                <h1 class="reveal" style="margin-bottom: 1rem;">Pourquoi faire appel à ADMINLEXIS ?</h1>
+                <p class="reveal"
+                    style="text-align: center; color: var(--text-gray); margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                    L'externalisation de vos formalités juridiques est un levier de croissance et de sérénité.</p>
+
+                <div class="target-grid">
+                    <div class="target-card reveal">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div
+                                style="background: var(--accent); color: var(--primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i data-lucide="user"></i>
+                            </div>
+                            <h3 style="margin: 0; border: none; padding: 0;">Vous êtes dirigeant de TPE ou PME</h3>
+                        </div>
+                        <ul>
+                            <li>Vous ne maîtrisez pas les formalités juridiques</li>
+                            <li>Vous craignez les erreurs, les rejets, les délais</li>
+                            <li>Vous perdez du temps sur des démarches qui ne sont pas votre métier</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <h4>Ce que cela implique pour votre activité :</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-gray); line-height: 1.8;">
+                                <i data-lucide="alert-circle"
+                                    style="width: 14px; vertical-align: middle; margin-right: 5px;"></i> Retards
+                                administratifs<br>
+                                <i data-lucide="alert-circle"
+                                    style="width: 14px; vertical-align: middle; margin-right: 5px;"></i> Risques de
+                                non-conformité<br>
+                                <i data-lucide="alert-circle"
+                                    style="width: 14px; vertical-align: middle; margin-right: 5px;"></i> Charge mentale
+                                inutile
+                            </p>
+                        </div>
+                        <div class="highlight-box"
+                            style="border-top-color: var(--accent); border-top-style: solid; margin-top: 2rem;">
+                            <h4>ADMINLEXIS vous apporte :</h4>
+                            <p style="font-size: 0.9rem; line-height: 1.8;">
+                                <i data-lucide="check"
+                                    style="width: 16px; color: var(--accent); vertical-align: middle; margin-right: 5px;"></i>
+                                Un accompagnement clair et pédagogique<br>
+                                <i data-lucide="check"
+                                    style="width: 16px; color: var(--accent); vertical-align: middle; margin-right: 5px;"></i>
+                                Une prise en charge complète des formalités<br>
+                                <i data-lucide="check"
+                                    style="width: 16px; color: var(--accent); vertical-align: middle; margin-right: 5px;"></i>
+                                La sécurité de dossiers conformes et suivis
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="target-card reveal" style="transition-delay: 0.2s;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div
+                                style="background: var(--accent); color: var(--primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i data-lucide="briefcase"></i>
+                            </div>
+                            <h3 style="margin: 0; border: none; padding: 0;">Vous êtes avocat, notaire ou
+                                expert-comptable</h3>
+                        </div>
+                        <ul>
+                            <li>Les formalités sont nécessaires mais hors cœur de métier</li>
+                            <li>Elles mobilisent des ressources internes précieuses</li>
+                            <li>Elles coupent la concentration sur vos dossiers clients</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <h4>Externaliser ces tâches, c'est :</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-gray); line-height: 1.8;">
+                                <i data-lucide="trending-up"
+                                    style="width: 14px; vertical-align: middle; margin-right: 5px;"></i> Gagner du
+                                temps<br>
+                                <i data-lucide="trending-up"
+                                    style="width: 14px; vertical-align: middle; margin-right: 5px;"></i> Fluidifier
+                                votre organisation<br>
+                                <i data-lucide="trending-up"
+                                    style="width: 14px; vertical-align: middle; margin-right: 5px;"></i> Sécuriser
+                                l'exécution des actes
+                            </p>
+                        </div>
+                        <div class="highlight-box"
+                            style="border-top-color: var(--accent); border-top-style: solid; margin-top: 2rem;">
+                            <h4>ADMINLEXIS devient :</h4>
+                            <p style="font-size: 0.9rem; line-height: 1.8;">
+                                <i data-lucide="zap"
+                                    style="width: 16px; color: var(--accent); vertical-align: middle; margin-right: 5px;"></i>
+                                Votre relais opérationnel<br>
+                                <i data-lucide="zap"
+                                    style="width: 16px; color: var(--accent); vertical-align: middle; margin-right: 5px;"></i>
+                                Une alternative souple à l'embauche<br>
+                                <i data-lucide="zap"
+                                    style="width: 16px; color: var(--accent); vertical-align: middle; margin-right: 5px;"></i>
+                                Un partenaire fiable et réactif
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 - NOS SERVICES -->
+        <section id="services">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h1>Nos services</h1>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <h3><i data-lucide="plus-circle"></i> Création d'entreprise</h3>
+                        <p>Immatriculations toutes formes, Guichet Unique, Dépôts greffe, Annonces légales, RBE</p>
+                    </div>
+                    <div class="service-card reveal" style="transition-delay: 0.1s;">
+                        <h3><i data-lucide="refresh-cw"></i> Modifications courantes</h3>
+                        <p>Changement de dirigeant, Transfert de siège, Modification de dénomination, Modification
+                            d'objet social, Augmentation/réduction de capital, Cessions de parts</p>
+                    </div>
+                    <div class="service-card reveal" style="transition-delay: 0.2s;">
+                        <h3><i data-lucide="file-text"></i> Autres formalités</h3>
+                        <p>Dépôt des comptes annuels, Dépôts d'actes isolés, Mise à jour RBE, Prorogation de société,
+                            Levée de mise en sommeil/radiation d'office</p>
+                    </div>
+                    <div class="service-card reveal" style="transition-delay: 0.3s;">
+                        <h3><i data-lucide="alert-triangle"></i> Cession & cessation</h3>
+                        <p>Dissolution, Liquidation, Transmission Universelle de Patrimoine (TUP), Cessation d'activité
+                        </p>
+                    </div>
+                </div>
+                <div class="services-cta reveal">
+                    <a href="#" class="btn btn-primary" onclick="openModal(); return false;">Me faire accompagner</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 - À PROPOS -->
+        <section id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text reveal">
+                        <h1
+                            style="color: var(--accent); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem;">
+                            À propos d'ADMINLEXIS</h1>
+                        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Une expertise au service de votre sérénité
+                        </h2>
+                        <p>Fort de plus de 20 ans d'expérience en droit des sociétés, Davide Candela a fondé ADMINLEXIS
+                            afin d'offrir à ses clients une prise en charge rigoureuse et personnalisée de leurs
+                            formalités juridiques.</p>
+                        <p>ADMINLEXIS, c'est :</p>
+                        <div class="features-list" style="margin-top: 1rem;">
+                            <div class="feature-item"><i data-lucide="check" style="color: var(--accent);"></i> Une
+                                prise en charge complète des formalités</div>
+                            <div class="feature-item"><i data-lucide="check" style="color: var(--accent);"></i> Un gain
+                                de temps immédiat et mesurable</div>
+                            <div class="feature-item"><i data-lucide="check" style="color: var(--accent);"></i> Des
+                                dossiers conformes, suivis jusqu'au bout</div>
+                            <div class="feature-item"><i data-lucide="check" style="color: var(--accent);"></i> Une
+                                alternative souple à l'embauche</div>
+                            <div class="feature-item"><i data-lucide="check" style="color: var(--accent);"></i> Un
+                                partenaire fiable, rigoureux et disponible</div>
+                        </div>
+                    </div>
+                    <div class="about-image reveal">
+                        <div
+                            style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; border-top: 5px solid var(--accent); border-right: 5px solid var(--accent); z-index: 0;">
+                        </div>
+                        <img src="about.jpg" alt="Expertise Juridique">
+                        <div
+                            style="position: absolute; bottom: -20px; left: -20px; width: 100px; height: 100px; border-bottom: 5px solid var(--accent); border-left: 5px solid var(--accent); z-index: 0;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5 - VOS RETOURS -->
+        <section id="reviews">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h1>Ce que disent nos clients</h1>
+                </div>
+                <div class="review-grid">
+                    <div class="review-card reveal">
+                        <div style="color: var(--accent); margin-bottom: 1rem;"><i data-lucide="quote"></i></div>
+                        <p class="review-text">"J'ai eu le plaisir de travailler avec Davide, et je tiens à souligner
+                            son professionnalisme ainsi que sa capacité impressionnante à gérer des charges de travail
+                            complexes dans des délais extrêmement serrés. Elle a su produire avec rigueur et efficacité
+                            les rapports annuels de plus de 200 sociétés, tout en menant de front des opérations
+                            stratégiques telles que des augmentations de capital, des conventions réglementées, des
+                            créations de sociétés, des cessions de créances et diverses opérations sur le capital. Son
+                            engagement, sa réactivité et son sens de l'organisation lui permettent de mener à bien des
+                            missions exigeantes sans jamais perdre en précision ni en fiabilité."</p>
+                        <div class="review-author">
+                            <span class="author-name">Oliver BEGUE</span>
+                            <span class="author-title">Président, Les Georgettes</span>
+                        </div>
+                    </div>
+                    <div class="review-card reveal" style="transition-delay: 0.1s;">
+                        <div style="color: var(--accent); margin-bottom: 1rem;"><i data-lucide="quote"></i></div>
+                        <p class="review-text">"J'ai collaboré pendant plus de 15 ans avec Davide Candela et je ne peux
+                            que louer son professionnalisme, sa rigueur et son énergie quotidienne. Dans un
+                            environnement juridique complexe et en perpétuelle évolution, ses compétences et sa
+                            réactivité sont un atout pour une société ou un groupe qui souhaite externaliser son
+                            juridique « corporate »."</p>
+                        <div class="review-author">
+                            <span class="author-name">Philippe Ségura</span>
+                            <span class="author-title">Directeur Général, Oceanis</span>
+                        </div>
+                    </div>
+                    <div class="review-card reveal" style="transition-delay: 0.2s;">
+                        <div style="color: var(--accent); margin-bottom: 1rem;"><i data-lucide="quote"></i></div>
+                        <p class="review-text">"Très satisfait des services d'Adminlexis : réactivité, professionnalisme
+                            et écoute au rendez-vous pour simplifier mes démarches administratives. Je recommande
+                            vivement !"</p>
+                        <div class="review-author">
+                            <span class="author-name">Cedric Vamur</span>
+                            <span class="author-title">Président, Blue Ribbon Consulting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#home" class="logo">ADMIN<span>LEXIS</span></a>
+                <div class="footer-links">
+                    <a href="#" style="color: var(--text-gray); text-decoration: none; margin-left: 20px;">Mentions
+                        Légales</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 ADMINLEXIS. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <!-- CONTACT MODAL -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">
+                <i data-lucide="x"></i>
+            </button>
+            <h2 style="margin-bottom: 2rem; text-align: center;">Contactez-nous</h2>
+            <form class="contact-form"
+                onsubmit="event.preventDefault(); alert('Message envoyé ! (Simulation)'); closeModal();">
+                <div class="form-group">
+                    <label>Nom Complet</label>
+                    <input type="text" placeholder="Votre nom" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="votre@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Téléphone</label>
+                    <input type="tel" placeholder="06 00 00 00 00">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="4" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Envoyer le message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Reveal animations on scroll using Intersection Observer
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Once animated, no need to observe anymore
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, {
+            threshold: 0.15
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Mobile menu toggle
+        const toggleMenu = () => {
+            const nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
+
+        // Contact Modal Logic
+        const openModal = () => {
+            const modal = document.getElementById('contactModal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('active'), 10);
+            document.body.style.overflow = 'hidden';
+
+            // Close mobile menu if open
+            document.querySelector('.nav-links').classList.remove('active');
+        }
+
+        const closeModal = () => {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('active');
+            setTimeout(() => modal.style.display = 'none', 400);
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        window.onclick = (event) => {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>
