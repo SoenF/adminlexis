@@ -23,8 +23,6 @@
             --primary: #021A36;
             --accent: #DBDCD6;
             --white: #FFFFFF;
-            --green: #2D5A27;
-            --green-light: #3D7A35;
             --text-gray: #A0AEC0;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -281,7 +279,8 @@
         }
 
         .service-card {
-            background-color: var(--green);
+            background-color: var(--accent);
+            color: var(--primary);
             padding: 2.5rem;
             border-radius: 8px;
             transition: var(--transition);
@@ -292,7 +291,7 @@
 
         .service-card:hover {
             transform: scale(1.02);
-            background-color: var(--green-light);
+            filter: brightness(0.95);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
@@ -306,7 +305,7 @@
 
         .service-card p {
             font-size: 0.95rem;
-            opacity: 0.9;
+            color: rgba(2, 26, 54, 0.8);
         }
 
         .services-cta {
@@ -522,6 +521,52 @@
             }
         }
 
+        /* --- Contact Banner --- */
+        #contact-banner {
+            padding: 80px 0;
+            min-height: auto;
+            background: linear-gradient(rgba(2, 26, 54, 0.85), rgba(2, 26, 54, 0.85)), url('hero.jpg');
+            background-size: cover;
+            background-position: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .banner-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .banner-text h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .banner-text p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+        }
+
+        .banner-cta .btn {
+            white-space: nowrap;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 968px) {
+            .banner-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .banner-text h1 {
+                font-size: 1.8rem;
+            }
+        }
+
         /* --- Footer --- */
         footer {
             background-color: #011022;
@@ -684,7 +729,7 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#pour-qui">Pour qui ?</a></li>
-                    <li><a href="#services">Nos Services</a></li>
+                    <li><a href="#services">Nos services</a></li>
                     <li><a href="#about">À propos</a></li>
                     <li><a href="#reviews">Vos retours</a></li>
                     <li><a href="#" onclick="openModal(); return false;">Contact</a></li>
@@ -701,12 +746,14 @@
         <section id="home">
             <div class="container reveal">
                 <h1>Vos formalités juridiques, prises en charge de A à Z.</h1>
-                <p class="subtitle">Vous vous concentrez sur l'essentiel.</p>
-                <h2>ADMINLEXIS accompagne les dirigeants de TPE/PME et les professionnels du droit et du chiffre dans la
+                <p class="subtitle">Pour vous concentrez sur l'essentiel.</p>
+                <h2>ADMINLEXIS accompagne les dirigeants de TPE/PME et les professionnels du droit et de l'expertise
+                    comptable dans la
                     gestion complète de leurs formalités juridiques et administratives.</h2>
                 <div style="max-width: 800px; margin: 0 auto;">
                     <p>Guichet Unique, greffe, annonces légales, RBE, modifications statutaires, cessations d'activité…
-                        Des démarches indispensables, mais chronophages et complexes. ADMINLEXIS s'en charge pour vous,
+                        Des démarches indispensables, mais chronophages et complexes. <br>
+                        ADMINLEXIS s'en charge pour vous,
                         avec méthode, rigueur et fiabilité.</p>
                 </div>
                 <a href="#" class="btn btn-primary" onclick="openModal(); return false;">Prendre contact / Planifier un
@@ -717,16 +764,16 @@
         <!-- SECTION 2 - POUR QUI? -->
         <section id="pour-qui">
             <div class="container">
-                <h1 class="reveal" style="margin-bottom: 1rem;">Pourquoi faire appel à ADMINLEXIS ?</h1>
+                <h1 class="reveal" style="margin-bottom: 1rem;">Pourquoi faire confiance à ADMINLEXIS ?</h1>
                 <p class="reveal"
                     style="text-align: center; color: var(--text-gray); margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto;">
                     L'externalisation de vos formalités juridiques est un levier de croissance et de sérénité.</p>
 
                 <div class="target-grid">
                     <div class="target-card reveal">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
                             <div
-                                style="background: var(--accent); color: var(--primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                style="background: var(--accent); color: var(--primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: -4px;">
                                 <i data-lucide="user"></i>
                             </div>
                             <h3 style="margin: 0; border: none; padding: 0;">Vous êtes dirigeant de TPE ou PME</h3>
@@ -768,9 +815,9 @@
                     </div>
 
                     <div class="target-card reveal" style="transition-delay: 0.2s;">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
                             <div
-                                style="background: var(--accent); color: var(--primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                style="background: var(--accent); color: var(--primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: -4px;">
                                 <i data-lucide="briefcase"></i>
                             </div>
                             <h3 style="margin: 0; border: none; padding: 0;">Vous êtes avocat, notaire ou
@@ -824,22 +871,22 @@
                 <div class="services-grid">
                     <div class="service-card reveal">
                         <h3><i data-lucide="plus-circle"></i> Création d'entreprise</h3>
-                        <p>Immatriculations toutes formes, Guichet Unique, Dépôts greffe, Annonces légales, RBE</p>
+                        <p>Immatriculations toutes formes, Guichet Unique, Dépôts greffe, Annonces légales, RBE...</p>
                     </div>
                     <div class="service-card reveal" style="transition-delay: 0.1s;">
                         <h3><i data-lucide="refresh-cw"></i> Modifications courantes</h3>
                         <p>Changement de dirigeant, Transfert de siège, Modification de dénomination, Modification
-                            d'objet social, Augmentation/réduction de capital, Cessions de parts</p>
+                            d'objet social, Augmentation/réduction de capital, Cessions de parts...</p>
                     </div>
                     <div class="service-card reveal" style="transition-delay: 0.2s;">
                         <h3><i data-lucide="file-text"></i> Autres formalités</h3>
                         <p>Dépôt des comptes annuels, Dépôts d'actes isolés, Mise à jour RBE, Prorogation de société,
-                            Levée de mise en sommeil/radiation d'office</p>
+                            Levée de mise en sommeil/radiation d'office...</p>
                     </div>
                     <div class="service-card reveal" style="transition-delay: 0.3s;">
                         <h3><i data-lucide="alert-triangle"></i> Cession & cessation</h3>
-                        <p>Dissolution, Liquidation, Transmission Universelle de Patrimoine (TUP), Cessation d'activité
-                        </p>
+                        <p>Dissolution, Liquidation, Transmission Universelle de Patrimoine (TUP), Cessation
+                            d'activité...</p>
                     </div>
                 </div>
                 <div class="services-cta reveal">
@@ -858,7 +905,7 @@
                             À propos d'ADMINLEXIS</h1>
                         <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Une expertise au service de votre sérénité
                         </h2>
-                        <p>Fort de plus de 20 ans d'expérience en droit des sociétés, Davide Candela a fondé ADMINLEXIS
+                        <p>Fort de plus de 30 ans d'expérience en droit des sociétés, Davide Candela a fondé ADMINLEXIS
                             afin d'offrir à ses clients une prise en charge rigoureuse et personnalisée de leurs
                             formalités juridiques.</p>
                         <p>ADMINLEXIS, c'est :</p>
@@ -983,6 +1030,22 @@
                 </div>
             </div>
         </section>
+
+        <!-- SECTION 6 - CONTACT BANNER -->
+        <section id="contact-banner">
+            <div class="container">
+                <div class="banner-content reveal">
+                    <div class="banner-text">
+                        <h1>Vous souhaitez parler à un professionnel ?</h1>
+                        <p>Notre équipe se fera un plaisir de vous fournir plus d'informations et de répondre à vos
+                            besoins professionnels.</p>
+                    </div>
+                    <div class="banner-cta">
+                        <a href="#" class="btn btn-primary" onclick="openModal(); return false;">Contactez-nous</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -1011,6 +1074,10 @@
             <h2 style="margin-bottom: 2rem; text-align: center;">Contactez-nous</h2>
             <form class="contact-form"
                 onsubmit="event.preventDefault(); alert('Message envoyé ! (Simulation)'); closeModal();">
+                <div class="form-group">
+                    <label>Société / Cabinet</label>
+                    <input type="text" placeholder="Le nom de votre structure" required>
+                </div>
                 <div class="form-group">
                     <label>Nom Complet</label>
                     <input type="text" placeholder="Votre nom" required>
