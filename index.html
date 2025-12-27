@@ -216,7 +216,7 @@
 
         /* --- Section 2: Pour qui? --- */
         #pour-qui {
-            background-color: #032145;
+            background-color: var(--primary);
         }
 
         #pour-qui h1 {
@@ -302,7 +302,8 @@
         }
 
         .service-card {
-            background-color: var(--accent);
+            background: rgba(219, 220, 214, 0.9);
+            /* Beige opacity 0.9 */
             color: var(--primary);
             padding: 2.5rem;
             border-radius: 8px;
@@ -310,12 +311,14 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            border: none;
         }
 
         .service-card:hover {
             transform: scale(1.02);
-            filter: brightness(0.95);
+            background: rgba(219, 220, 214, 1);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: transparent;
         }
 
         .service-card h3 {
@@ -324,6 +327,7 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            color: var(--primary);
         }
 
         .service-card p {
@@ -337,7 +341,7 @@
 
         /* --- Section 4: À Propos --- */
         #about {
-            background-color: #032145;
+            background-color: var(--primary);
             position: relative;
             overflow: hidden;
         }
@@ -498,9 +502,9 @@
         }
 
         .slide {
-    flex: 0 0 100%;
-    padding: 0;
-}
+            flex: 0 0 100%;
+            padding: 0;
+        }
 
         .slider-track-container {
             overflow: hidden;
@@ -626,7 +630,7 @@
 
         /* --- Footer --- */
         footer {
-            background-color: #011022;
+            background-color: #021A36;
             padding: 60px 0 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -673,7 +677,7 @@
             max-width: 800px;
             max-height: 90vh;
             overflow-y: auto;
-            padding: 4rem;
+            padding: 3rem 4rem 4rem 4rem;
             background: var(--primary);
             border-radius: 24px;
             border: 1px solid rgba(219, 220, 214, 0.1);
@@ -771,9 +775,10 @@
             section {
                 padding: 60px 0;
             }
+
             .slider-track {
-    overflow-x: hidden;
-}
+                overflow-x: hidden;
+            }
 
 
             .container {
@@ -943,7 +948,7 @@
         <div class="container">
             <nav>
                 <a href="#home" class="logo">
-                    <img src="assets/logo.jpg" alt="ADMINLEXIS">
+                    <img src="assets/logo.png" alt="ADMINLEXIS">
                 </a>
                 <ul class="nav-links">
                     <button class="nav-close-btn" onclick="toggleMenu()" style="display: none;">
@@ -1287,7 +1292,7 @@
         <div class="container">
             <div class="footer-content">
                 <a href="#home" class="logo">
-                    <img src="assets/logo.jpg" alt="ADMINLEXIS">
+                    <img src="assets/logo.png" alt="ADMINLEXIS">
                 </a>
                 <div class="footer-links" style="margin: 0;">
                     <a href="#" style="color: var(--text-gray); text-decoration: none;">Mentions Légales</a>
@@ -1305,7 +1310,8 @@
             <button class="close-modal" onclick="closeModal()">
                 <i data-lucide="x"></i>
             </button>
-            <h2 style="text-align: center;">Contactez-nous</h2>
+            <h2 style="text-align: center; color: var(--accent); margin-bottom: 2rem; margin-top: 0;">Contactez-nous
+            </h2>
             <form class="contact-form"
                 onsubmit="event.preventDefault(); alert('Message envoyé ! Nous vous recontactons rapidement.'); closeModal();">
                 <div class="form-group">
