@@ -484,14 +484,15 @@
             max-width: 900px;
             margin: 0 auto;
             padding-bottom: 110px;
-            /* Increased to fit buttons under dots */
+            overflow: hidden;
+            /* Crucial for constraining content */
         }
 
         .slider-track {
             display: flex;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
-            /* Base width for move calculation */
+            /* Must match parent width */
             cursor: grab;
             user-select: none;
             touch-action: pan-y pinch-zoom;
@@ -503,7 +504,10 @@
 
         .slide {
             flex: 0 0 100%;
-            padding: 0;
+            width: 100%;
+            min-width: 0;
+            padding: 0 10px;
+            box-sizing: border-box;
         }
 
         .slider-track-container {
@@ -921,6 +925,17 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1rem;
+            }
+
+            .review-card {
+                padding: 1.5rem;
+                width: 100%;
+                /* box-sizing is inherited but being explicit helps */
+                box-sizing: border-box;
+            }
+
+            .review-text {
+                font-size: 0.95rem;
             }
         }
 
