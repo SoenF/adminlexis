@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>ADMINLEXIS | Formalités Juridiques et Administratives</title>
     <meta name="description"
         content="ADMINLEXIS accompagne les dirigeants de TPE/PME et professionnels du droit dans la gestion complète de leurs formalités juridiques.">
@@ -33,8 +33,11 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
 
         body {
@@ -42,7 +45,11 @@
             background-color: var(--primary);
             color: var(--white);
             line-height: 1.6;
-            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
         h1,
@@ -366,6 +373,8 @@
         .about-image {
             position: relative;
             z-index: 1;
+            padding-right: 20px;
+            padding-bottom: 20px;
         }
 
         .about-image img {
@@ -596,6 +605,11 @@
             .banner-text h1 {
                 font-size: 1.8rem;
             }
+
+            .banner-cta .btn {
+                white-space: normal;
+                width: 100%;
+            }
         }
 
         /* --- Footer --- */
@@ -777,12 +791,16 @@
                 transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 z-index: 1001;
                 box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-                transform: translateX(100%);
+                transform: translateX(101%);
                 display: flex;
+                visibility: hidden;
+                pointer-events: none;
             }
 
             .nav-links.active {
                 transform: translateX(0);
+                visibility: visible;
+                pointer-events: auto;
             }
 
             .nav-close-btn {
@@ -801,8 +819,18 @@
                 z-index: 1002;
             }
 
+            #home {
+                background-attachment: scroll;
+            }
+
             .about-image img {
-                box-shadow: 15px 15px 0 var(--accent);
+                box-shadow: 10px 10px 0 var(--accent);
+            }
+
+            .about-image {
+                padding-right: 10px;
+                padding-bottom: 10px;
+                margin-top: 2rem;
             }
 
             .slider-container {
@@ -837,21 +865,49 @@
             .form-group.full-width {
                 grid-column: span 1;
             }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            footer .logo img {
+                height: 80px;
+            }
+
+            .footer-links {
+                margin: 0;
+            }
+
+            .banner-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .banner-cta .btn {
+                white-space: normal;
+                width: 100%;
+            }
+
+            .review-author {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
             #home h1 {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
             }
 
-            #home .subtitle {
-                font-size: 1.2rem;
+            .container {
+                padding: 0 1.2rem;
             }
 
-            .btn {
-                width: 100%;
-                display: block;
-                padding: 15px 20px;
+            .review-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -1209,9 +1265,8 @@
                 <a href="#home" class="logo">
                     <img src="assets/logo.jpg" alt="ADMINLEXIS">
                 </a>
-                <div class="footer-links">
-                    <a href="#" style="color: var(--text-gray); text-decoration: none; margin-left: 20px;">Mentions
-                        Légales</a>
+                <div class="footer-links" style="margin: 0;">
+                    <a href="#" style="color: var(--text-gray); text-decoration: none;">Mentions Légales</a>
                 </div>
             </div>
             <div class="copyright">
