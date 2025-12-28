@@ -73,6 +73,9 @@
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     <style>
         :root {
             --primary: #021A36;
@@ -1476,27 +1479,27 @@
             </button>
             <h2 style="text-align: center; color: var(--accent); margin-bottom: 2rem; margin-top: 0;">Contactez-nous
             </h2>
-            <form class="contact-form"
-                onsubmit="event.preventDefault(); alert('Message envoyé ! Nous vous recontactons rapidement.'); closeModal();">
+            <form id="contact-form" class="contact-form">
                 <div class="form-group">
                     <label>Société / Cabinet</label>
-                    <input type="text" placeholder="Nom de votre structure" required>
+                    <input type="text" name="company" placeholder="Nom de votre structure" required>
                 </div>
                 <div class="form-group">
                     <label>Prénom & Nom</label>
-                    <input type="text" placeholder="Jean Dupont" required>
+                    <input type="text" name="from_name" placeholder="Jean Dupont" required>
                 </div>
                 <div class="form-group">
                     <label>Email Professionnel</label>
-                    <input type="email" placeholder="jean@entreprise.fr" required>
+                    <input type="email" name="reply_to" placeholder="jean@entreprise.fr" required>
                 </div>
                 <div class="form-group">
                     <label>Téléphone</label>
-                    <input type="tel" placeholder="06 12 34 56 78">
+                    <input type="tel" name="phone" placeholder="06 12 34 56 78">
                 </div>
                 <div class="form-group full-width">
                     <label>Comment pouvons-nous vous aider ?</label>
-                    <textarea rows="4" placeholder="Décrivez brièvement votre besoin..." required></textarea>
+                    <textarea name="message" rows="4" placeholder="Décrivez brièvement votre besoin..."
+                        required></textarea>
                 </div>
                 <div class="form-group full-width" style="margin-top: 1rem;">
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer la demande</button>
@@ -1622,6 +1625,34 @@
                 moveSlider(-1); // Swipe right
             }
         };
+
+        // EmailJS Integration
+        (function () {
+            emailjs.init('xNwu2IqMJaYeouMwY');
+        })();
+
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Envoi en cours...';
+            submitBtn.disabled = true;
+
+            emailjs.sendForm('service_2ild8kf', 'template_3ap1u0d', this)
+                .then(function () {
+                    alert('Message envoyé avec succès ! Nous vous recontactons rapidement.');
+                    document.getElementById('contact-form').reset();
+                    closeModal();
+                }, function (error) {
+                    alert('Erreur lors de l\'envoi. Veuillez réessayer ou nous contacter directement.');
+                    console.error('EmailJS Error:', error);
+                })
+                .finally(function () {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+        });
     </script>
 </body>
 
