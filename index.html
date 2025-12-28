@@ -25,6 +25,7 @@
             --white: #FFFFFF;
             --text-gray: #A0AEC0;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --service-bg-alpha: 0.5;
         }
 
         * {
@@ -302,9 +303,10 @@
         }
 
         .service-card {
-            background: rgba(219, 220, 214, 0.9);
+            background: rgba(219, 220, 214, var(--service-bg-alpha));
+
             /* Beige opacity 0.9 */
-            color: var(--primary);
+            color: #FFFFFF;
             padding: 2.5rem;
             border-radius: 8px;
             transition: var(--transition);
@@ -316,9 +318,8 @@
 
         .service-card:hover {
             transform: scale(1.02);
-            background: rgba(219, 220, 214, 1);
+            background: rgba(219, 220, 214, var(--service-bg-alpha));
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border-color: transparent;
         }
 
         .service-card h3 {
@@ -327,12 +328,12 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            color: var(--primary);
+            color: #FFFFFF;
         }
 
         .service-card p {
             font-size: 0.95rem;
-            color: rgba(2, 26, 54, 0.8);
+            color: #FFFFFF;
         }
 
         .services-cta {
