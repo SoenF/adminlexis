@@ -876,13 +876,18 @@
             }
 
             .slider-container {
-                padding-bottom: 50px;
+                padding-bottom: 70px;
+                padding-left: 1rem;
+                padding-right: 1rem;
                 overflow: hidden;
                 width: 100%;
+                box-sizing: border-box;
             }
 
             .slide {
                 padding: 0;
+                width: 100%;
+                min-width: 0;
             }
 
             .slider-btn {
@@ -950,10 +955,11 @@
             .review-card {
                 /* On mobile, card takes full available width */
                 width: 100%;
-                max-width: 100%;
-                padding: 1.5rem;
+                max-width: calc(100vw - 3rem);
+                padding: 1.2rem;
                 box-sizing: border-box;
                 overflow: hidden;
+                margin: 0 auto;
             }
 
             .review-text {
@@ -961,6 +967,7 @@
                 word-wrap: break-word;
                 overflow-wrap: break-word;
                 hyphens: auto;
+                max-width: 100%;
             }
         }
 
