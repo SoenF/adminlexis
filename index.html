@@ -402,6 +402,7 @@
         /* --- Section 5: Retours --- */
         #reviews {
             background-color: var(--primary);
+            overflow-x: hidden;
         }
 
         .review-grid {
@@ -446,6 +447,8 @@
             line-height: 1.8;
             font-size: 1.05rem;
             color: var(--white);
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         .review-author {
@@ -934,16 +937,19 @@
             }
 
             .review-card {
-                /* On mobile, card takes full available width minus padding */
+                /* On mobile, card takes full available width */
                 width: 100%;
                 max-width: 100%;
                 padding: 1.5rem;
                 box-sizing: border-box;
+                overflow: hidden;
             }
 
             .review-text {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
             }
         }
 
