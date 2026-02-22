@@ -567,6 +567,7 @@
         .slider-track-container {
             width: 100%;
             overflow: hidden;
+            transition: height 0.4s ease;
         }
 
         .slider-track {
@@ -589,16 +590,17 @@
             min-width: 0;
             display: flex;
             justify-content: center;
-            /* Center the card */
-            padding: 0 1rem;
-            /* Safe side padding */
+            align-items: flex-start;
+            /* Start from top to prevent clipping if height is tight */
+            padding: 2rem 1rem;
+            /* More vertical padding */
             box-sizing: border-box;
         }
 
         .slider-btn {
             position: absolute;
-            bottom: 40px;
-            /* Positioned higher to avoid overlap with next section */
+            bottom: 25px;
+            /* Lower to stay away from the card */
             background: rgba(255, 255, 255, 0.1);
             border: none;
             color: var(--white);
@@ -619,11 +621,11 @@
         }
 
         .slider-btn.prev {
-            left: calc(50% - 90px);
+            left: calc(50% - 120px);
         }
 
         .slider-btn.next {
-            right: calc(50% - 90px);
+            right: calc(50% - 120px);
         }
 
         .slider-dots {
@@ -979,11 +981,11 @@
             }
 
             .slider-btn.prev {
-                left: calc(50% - 75px);
+                left: calc(50% - 110px);
             }
 
             .slider-btn.next {
-                right: calc(50% - 75px);
+                right: calc(50% - 110px);
             }
 
             .modal-content {
@@ -1428,6 +1430,48 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Slide 5: Asmae -->
+                            <div class="slide">
+                                <div class="review-card">
+                                    <div style="display: flex; gap: 4px; color: var(--accent); margin-bottom: 1.5rem;">
+                                        <i data-lucide="star"
+                                            style="fill: currentColor; width: 18px; height: 18px;"></i>
+                                        <i data-lucide="star"
+                                            style="fill: currentColor; width: 18px; height: 18px;"></i>
+                                        <i data-lucide="star"
+                                            style="fill: currentColor; width: 18px; height: 18px;"></i>
+                                        <i data-lucide="star"
+                                            style="fill: currentColor; width: 18px; height: 18px;"></i>
+                                        <i data-lucide="star"
+                                            style="fill: currentColor; width: 18px; height: 18px;"></i>
+                                    </div>
+                                    <p class="review-text">"J’ai eu le plaisir de collaborer avec Davide Candela dans le
+                                        cadre de missions de formalités juridiques et de suivi administratif de
+                                        sociétés.
+                                        Son expertise en droit des sociétés, sa parfaite maîtrise des procédures
+                                        (créations,
+                                        modifications statutaires, opérations exceptionnelles, relations avec les
+                                        greffes et
+                                        le Guichet unique) ainsi que sa grande rigueur font d’elle une professionnelle
+                                        particulièrement fiable.
+                                        Davide se distingue par sa capacité à anticiper les contraintes réglementaires,
+                                        à
+                                        sécuriser les dossiers dans leurs moindres détails et à accompagner ses clients
+                                        avec
+                                        pédagogie, réactivité et pragmatisme. Son approche structurée et orientée
+                                        solutions
+                                        est un véritable atout, notamment pour les dirigeants et partenaires exigeants."
+                                    </p>
+                                    <div class="review-author">
+                                        <img src="assets/logo-skills-jobs.jpg" alt="Skill Jobs" class="author-logo">
+                                        <div class="author-info">
+                                            <span class="author-name">Asmae Dahmani</span>
+                                            <span class="author-title">Directrice Générale de Skill Jobs</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1546,7 +1590,21 @@
             if (currentSlide < 0) currentSlide = slides.length - 1;
             track.style.transform = `translateX(-${currentSlide * 100}%)`;
             updateDots();
+
+            // Adjust container height to active child
+            const activeSlide = slides[currentSlide];
+            const card = activeSlide.querySelector('.review-card');
+            if (card) {
+                // Add a buffer (like 4rem/64px) to ensure no clipping and consistent padding
+                const height = card.offsetHeight + 64;
+                track.parentElement.style.height = height + 'px';
+            }
         };
+
+        // Initialize first slide height
+        window.addEventListener('load', () => {
+            setTimeout(() => goToSlide(0), 100);
+        });
 
         const moveSlider = (step) => {
             goToSlide(currentSlide + step);
@@ -1632,7 +1690,9 @@
 
         // EmailJS Integration
         (function () {
-            emailjs.init('xNwu2IqMJaYeouMwY');
+            emailjs.init({
+                publicKey: 'xNwu2IqMJaYeouMwY',
+            });
         })();
 
         document.getElementById('contact-form').addEventListener('submit', function (event) {
@@ -1643,13 +1703,13 @@
             submitBtn.textContent = 'Envoi en cours...';
             submitBtn.disabled = true;
 
-            emailjs.sendForm('service_2ild8kf', 'template_3ap1u0d', this)
+            emailjs.sendForm('service_2ild8kf', 'template_3ap1u0d', '#contact-form')
                 .then(function () {
                     alert('Message envoyé avec succès ! Nous vous recontactons rapidement.');
                     document.getElementById('contact-form').reset();
                     closeModal();
                 }, function (error) {
-                    alert('Erreur lors de l\'envoi. Veuillez réessayer ou nous contacter directement.');
+                    alert('Erreur lors de l\'envoi (Détail: ' + (error.text || error.message || 'Erreur inconnue') + '). Veuillez réessayer ou nous contacter directement.');
                     console.error('EmailJS Error:', error);
                 })
                 .finally(function () {
